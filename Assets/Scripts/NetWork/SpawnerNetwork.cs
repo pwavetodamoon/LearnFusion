@@ -2,24 +2,27 @@ using Fusion;
 using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
 {
-    public NetworkPrefabRef playerPrefab;
+    public NetworkPrefabRef _networkPlayer;
     public Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
-
+    private CollectNetworkInputData _collectNetworkInputData;
+    NetworkObject networkPlayerObject;
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         if (runner.IsServer)
         {
             Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.DefaultPlayers) * 3, 1, 0);
-            NetworkObject networkPlayerObject = runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, player);
-            // Theo dõi Avatars của người chơi để chúng ta có thể xóa nó khi chúng ngắt kết nối
+            networkPlayerObject = runner.Spawn(_networkPlayer, spawnPosition, Quaternion.identity, player);
             _spawnedCharacters.Add(player, networkPlayerObject);
             Debug.Log("Player Now: " + _spawnedCharacters.Count);
+            // Theo dõi Avatars của người chơi để chúng ta có thể xóa nó khi chúng ngắt kết nối
         }
     }
+
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
@@ -34,7 +37,14 @@ public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
-        //collect input
+        if (_collectNetworkInputData == null && NetworkPlayer.local != null)
+        {
+            _collectNetworkInputData = NetworkPlayer.local.GetComponent<CollectNetworkInputData>();
+        }
+        if (_collectNetworkInputData != null)
+        {
+            input.Set(_collectNetworkInputData.GetNetworkInputData());
+        }
     }
 
     public void OnConnectedToServer(NetworkRunner runner)

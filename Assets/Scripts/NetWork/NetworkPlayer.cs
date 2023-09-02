@@ -20,16 +20,17 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
         }
         else
         {
+            cam.enabled = false;
             Debug.Log("Spawned remote player");
         }
     }
 
     public void PlayerLeft(PlayerRef player)
     {
-        //if (player == Object.InputAuthority)
-        //{
-        //    Runner.Despawn(Object);
-        //    Debug.Log("Despawn");
-        //}
+        if (player == Object.InputAuthority)
+        {
+            Runner.Despawn(Object);
+            Debug.Log("Despawn");
+        }
     }
 }
