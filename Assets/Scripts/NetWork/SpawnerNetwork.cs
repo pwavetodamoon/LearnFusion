@@ -3,24 +3,31 @@ using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
 {
-    public NetworkPrefabRef _networkPlayer;
+    public NetworkPrefabRef[] _networkPlayer;
     public Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     private CollectNetworkInputData _collectNetworkInputData;
     NetworkObject networkPlayerObject;
+
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
+
         if (runner.IsServer)
         {
+            int randomCharacter = UnityEngine.Random.Range(0, _networkPlayer.Count());
+            NetworkPrefabRef selectedCharacterRandom = _networkPlayer[randomCharacter];
             Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.DefaultPlayers) * 3, 1, 0);
-            networkPlayerObject = runner.Spawn(_networkPlayer, spawnPosition, Quaternion.identity, player);
-            _spawnedCharacters.Add(player, networkPlayerObject);
-            Debug.Log("Player Now: " + _spawnedCharacters.Count);
-            // Theo dõi Avatars của người chơi để chúng ta có thể xóa nó khi chúng ngắt kết nối
+            networkPlayerObject = runner.Spawn(selectedCharacterRandom, spawnPosition, Quaternion.identity, player);
         }
+        _spawnedCharacters.Add(player, networkPlayerObject);
+        Debug.Log("Player Now: " + _spawnedCharacters.Count);
+
+        // Theo dõi Avatars của người chơi để chúng ta có thể xóa nó khi chúng ngắt kết nối
+
     }
 
 

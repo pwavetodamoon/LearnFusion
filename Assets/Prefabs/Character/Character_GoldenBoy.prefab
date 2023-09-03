@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 591592281180753627}
   - component: {fileID: 9175463631672839084}
   m_Layer: 0
-  m_Name: PlayerDemo
+  m_Name: Character_GoldenBoy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
