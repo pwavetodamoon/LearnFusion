@@ -67,7 +67,6 @@ public class CollectNetworkInputData : MonoBehaviour
         if (context.canceled)
         {
             isJumpButtonPress = false;
-            //_animator.SetBool("isJumping", false);
 
         }
     }

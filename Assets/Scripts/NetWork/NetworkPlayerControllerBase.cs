@@ -1,4 +1,5 @@
 ﻿using Fusion;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -19,7 +20,7 @@ public class NetworkPlayerControllerBase : NetworkTransform
     [SerializeField] private float _jumpPower = 8.0f;
     [SerializeField] private float acceleration = 10.0f;
     [SerializeField] private float braking = 10.0f;
-    [SerializeField] private float maxSpeed = 2.0f;
+    [SerializeField] private float maxSpeed = 5.0f;
 
 
     [Header("Gravity")]

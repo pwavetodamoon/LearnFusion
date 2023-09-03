@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 1573883221182640661}
   - component: {fileID: 5191290400686342075}
   - component: {fileID: 5458434800358136752}
+  - component: {fileID: 2961498603654101947}
   m_Layer: 0
   m_Name: Character_Jack
   m_TagString: Untagged
@@ -377,13 +378,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.25
+  m_Height: 1.8
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &6124330615411798405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +410,7 @@ MonoBehaviour:
   - {fileID: 3310474390686171542}
   - {fileID: 1573883221182640661}
   - {fileID: 5458434800358136752}
+  - {fileID: 2961498603654101947}
   SimulationBehaviours: []
 --- !u!114 &3310474390686171542
 MonoBehaviour:
@@ -449,7 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a91249c5e02ea468c2948d14e7c399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
 --- !u!114 &5458434800358136752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,6 +487,36 @@ MonoBehaviour:
   braking: 10
   maxSpeed: 2
   _gravity: -30
+--- !u!114 &2961498603654101947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525496781126814177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  Animator: {fileID: 5397276548217222416}
+  TotalWords: 1
+  SyncSettings: 79
+  FloatAccuracy:
+    _value: 0
+    _inverse: 0
+    _hash: -814817977
+  TimeAccuracy:
+    _value: 0
+    _inverse: 0
+    _hash: 1061325578
+  WeightAccuracy:
+    _value: 0
+    _inverse: 0
+    _hash: -814817977
+  StateHashes: 000000008a18fce4b9abd9d3
+  TriggerHashes: 00000000
 --- !u!1 &4082447480397650779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,7 +1311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8123457914704575949}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18607593, y: 0.000000012128936, z: -0.0000000022970197, w: 0.98253536}
+  m_LocalRotation: {x: 0.18607593, y: -0.000000029281841, z: 0.000000005545495, w: 0.9825354}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1391,7 +1422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8889689311474419924}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12932311, y: 0.000000019075769, z: -0.0000000024878295, w: 0.99160254}
+  m_LocalRotation: {x: 0.12932311, y: -0.000000019075772, z: 0.00000000248783, w: 0.99160254}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1669,7 +1700,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9131862991011415531}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1576706, y: -0.00000001699116, z: 0.0000000027129403, w: 0.9874918}
+  m_LocalRotation: {x: 0.1576706, y: 0.00000001699116, z: -0.0000000027129403, w: 0.9874918}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -8,11 +8,20 @@ using UnityEngine;
 
 public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
 {
-    public NetworkPrefabRef[] _networkPlayer;
-    public Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
-    private CollectNetworkInputData _collectNetworkInputData;
-    NetworkObject networkPlayerObject;
+    [SerializeField] private NetworkPrefabRef[] _networkPlayer;
+    [SerializeField] private List<Transform> _spawnPosList;
 
+    private CollectNetworkInputData _collectNetworkInputData;
+    private NetworkObject networkPlayerObject;
+    private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+
+    private Transform RandomSpawnpositions()
+    {
+        int Position = UnityEngine.Random.Range(0, _spawnPosList.Count);
+        Transform spawnPos = _spawnPosList[Position];
+        Debug.Log($"spawnPos: {spawnPos.position}");
+        return spawnPos;
+    }
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
 
@@ -20,8 +29,7 @@ public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
         {
             int randomCharacter = UnityEngine.Random.Range(0, _networkPlayer.Count());
             NetworkPrefabRef selectedCharacterRandom = _networkPlayer[randomCharacter];
-            Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.DefaultPlayers) * 3, 1, 0);
-            networkPlayerObject = runner.Spawn(selectedCharacterRandom, spawnPosition, Quaternion.identity, player);
+            networkPlayerObject = runner.Spawn(selectedCharacterRandom, RandomSpawnpositions().position, Quaternion.identity, player);
         }
         _spawnedCharacters.Add(player, networkPlayerObject);
         Debug.Log("Player Now: " + _spawnedCharacters.Count);
