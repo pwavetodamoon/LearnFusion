@@ -9,11 +9,9 @@ public class CollectNetworkInputData : MonoBehaviour
     private Vector3 Direction;
     private bool isJumpButtonPress;
     private NewInputSystem inputActions;
-    public Animator _animator;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
         inputActions = new NewInputSystem();
     }
 
@@ -45,7 +43,6 @@ public class CollectNetworkInputData : MonoBehaviour
         {
             var temp = inputActions.Player.Move.ReadValue<Vector2>();
             Direction = new Vector3(temp.x, 0f, temp.y);
-            //_animator.SetBool("isRunning", true);
         }
 
     }
@@ -55,7 +52,6 @@ public class CollectNetworkInputData : MonoBehaviour
         if (obj.canceled)
         {
             Direction = Vector3.zero;
-            // _animator.SetBool("isRunning", false);
         }
     }
     private void Jump_performed(InputAction.CallbackContext context)
@@ -63,7 +59,6 @@ public class CollectNetworkInputData : MonoBehaviour
         if (context.performed)
         {
             isJumpButtonPress = true;
-            //  _animator.SetBool("isJumping", true);
 
         }
     }
