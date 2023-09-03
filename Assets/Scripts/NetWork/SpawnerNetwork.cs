@@ -3,24 +3,39 @@ using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
 {
-    public NetworkPrefabRef _networkPlayer;
-    public Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+    [SerializeField] private NetworkPrefabRef[] _networkPlayer;
+    [SerializeField] private List<Transform> _spawnPosList;
+
     private CollectNetworkInputData _collectNetworkInputData;
-    NetworkObject networkPlayerObject;
+    private NetworkObject networkPlayerObject;
+    private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+
+    private Transform RandomSpawnpositions()
+    {
+        int Position = UnityEngine.Random.Range(0, _spawnPosList.Count);
+        Transform spawnPos = _spawnPosList[Position];
+        Debug.Log($"spawnPos: {spawnPos.position}");
+        return spawnPos;
+    }
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
+
         if (runner.IsServer)
         {
-            Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.DefaultPlayers) * 3, 1, 0);
-            networkPlayerObject = runner.Spawn(_networkPlayer, spawnPosition, Quaternion.identity, player);
-            _spawnedCharacters.Add(player, networkPlayerObject);
-            Debug.Log("Player Now: " + _spawnedCharacters.Count);
-            // Theo dõi Avatars của người chơi để chúng ta có thể xóa nó khi chúng ngắt kết nối
+            int randomCharacter = UnityEngine.Random.Range(0, _networkPlayer.Count());
+            NetworkPrefabRef selectedCharacterRandom = _networkPlayer[randomCharacter];
+            networkPlayerObject = runner.Spawn(selectedCharacterRandom, RandomSpawnpositions().position, Quaternion.identity, player);
         }
+        _spawnedCharacters.Add(player, networkPlayerObject);
+        Debug.Log("Player Now: " + _spawnedCharacters.Count);
+
+        // Theo dõi Avatars của người chơi để chúng ta có thể xóa nó khi chúng ngắt kết nối
+
     }
 
 

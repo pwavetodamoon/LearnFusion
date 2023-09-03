@@ -58,4 +58,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _networkPlayer:
-    RawGuidValue: 2bc7cdf0b6cc1754d90102451ec70804
+  - RawGuidValue: e208cd3ffac71fe4c829faf7074e7ba8
+  - RawGuidValue: 62c4f3f654d93af41bbfed9d895cdf40
+  - RawGuidValue: bd577b855b68c994e85f7e1d4cbfcec6
+  - RawGuidValue: 2bc7cdf0b6cc1754d90102451ec70804
+  - RawGuidValue: 10fc8591f85987f479fa4d0a42bf7d96
+  - RawGuidValue: 0a8fc2ac8e97a3a4b93a9a0180be59aa
+  - RawGuidValue: 599e19b61b385024b926a299bfe6c8e2
+  _spawnPosList:
+  - {fileID: 7938750085767386847, guid: 2060a4d3ab07eae438837e18ad9eb9bc, type: 3}
+  - {fileID: 6332569849100394714, guid: 2c5972cc919f46c47aca983d37a70e22, type: 3}

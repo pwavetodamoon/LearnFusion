@@ -486,7 +486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685992162438401056}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.43005446, y: 0.000000019979309, z: -0.000000009517237, w: 0.902803}
+  m_LocalRotation: {x: 0.43005443, y: -0.0000000155259, z: 0.000000007395836, w: 0.902803}
   m_LocalPosition: {x: 0, y: 2, z: 1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -565,7 +565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795386391033077972}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.45573524, y: 0.0000000060029683, z: -0.0000000030734932, w: 0.8901154}
+  m_LocalRotation: {x: 0.45573524, y: -0, z: -0, w: 0.8901154}
   m_LocalPosition: {x: 0, y: 2, z: 1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1129,7 +1129,7 @@ MonoBehaviour:
   m_BindingMode: 4
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 7
+  - m_Height: 4.5
     m_Radius: 7
   - m_Height: 3
     m_Radius: 3
@@ -1598,7 +1598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7833831629658891526}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.48120916, y: 0.000000016239605, z: -0.000000008914667, w: 0.8766058}
+  m_LocalRotation: {x: 0.48120916, y: 0.000000021309821, z: -0.00000001169794, w: 0.8766058}
   m_LocalPosition: {x: 0, y: 2, z: 1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1699,6 +1699,7 @@ GameObject:
   - component: {fileID: 8584589516733673849}
   - component: {fileID: 4597588137491012383}
   - component: {fileID: 3298855397897484153}
+  - component: {fileID: 603024529240799645}
   m_Layer: 0
   m_Name: Character_Warrior
   m_TagString: Untagged
@@ -1797,6 +1798,7 @@ MonoBehaviour:
   - {fileID: 7723515283834927362}
   - {fileID: 8584589516733673849}
   - {fileID: 3298855397897484153}
+  - {fileID: 603024529240799645}
   SimulationBehaviours: []
 --- !u!114 &7723515283834927362
 MonoBehaviour:
@@ -1837,7 +1839,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a91249c5e02ea468c2948d14e7c399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
 --- !u!114 &3298855397897484153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1874,6 +1875,36 @@ MonoBehaviour:
   braking: 10
   maxSpeed: 2
   _gravity: -30
+--- !u!114 &603024529240799645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707385709732391113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  Animator: {fileID: 723241580017477322}
+  TotalWords: 1
+  SyncSettings: 79
+  FloatAccuracy:
+    _value: 0
+    _inverse: 0
+    _hash: -814817977
+  TimeAccuracy:
+    _value: 0
+    _inverse: 0
+    _hash: 1061325578
+  WeightAccuracy:
+    _value: 0
+    _inverse: 0
+    _hash: -814817977
+  StateHashes: 000000008a18fce4b9abd9d3
+  TriggerHashes: 00000000
 --- !u!1 &9075456111602645697
 GameObject:
   m_ObjectHideFlags: 0
