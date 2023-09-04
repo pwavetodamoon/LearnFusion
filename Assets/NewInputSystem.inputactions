@@ -22,15 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "1",
-                    "type": "Value",
-                    "id": "eadfbc3f-7d7b-43da-aecb-dcf83adc0d4f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -91,23 +82,23 @@
                 },
                 {
                     "name": "",
+                    "id": "677247fc-9d80-4302-a808-c917a95db16b",
+                    "path": "<AndroidJoystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "19883244-b272-4b7e-98fc-e9d57533128a",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d953f9ea-6985-4252-9bcb-ec4d8e81a081",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

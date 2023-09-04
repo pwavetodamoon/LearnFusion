@@ -1,0 +1,16 @@
+using UnityEngine;
+
+public sealed class UIHepler : MonoBehaviour
+{
+    private void Awake()
+    {
+        FixedSize();
+    }
+    void FixedSize()
+    {
+        if (Camera.main.aspect < 0.5625f)
+        {
+            transform.localScale = Vector3.one * (Camera.main.aspect / 0.5625f);
+        }
+    }
+}

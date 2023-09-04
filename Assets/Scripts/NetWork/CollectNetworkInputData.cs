@@ -81,9 +81,8 @@ public class CollectNetworkInputData : MonoBehaviour
 
         // jump
         if (inputActions.Player.Jump.IsPressed())
-        {
             networkInputData.JumpIsPressed = isJumpButtonPress;
-        }
+
         return networkInputData;
     }
 }
