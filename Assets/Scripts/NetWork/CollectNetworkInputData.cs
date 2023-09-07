@@ -1,6 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,8 +7,8 @@ public class CollectNetworkInputData : MonoBehaviour
 {
     private Vector3 Direction;
     private bool isJumpButtonPress;
-    private NewInputSystem inputActions;
 
+    private NewInputSystem inputActions;
     private void Awake()
     {
         inputActions = new NewInputSystem();
@@ -22,11 +21,7 @@ public class CollectNetworkInputData : MonoBehaviour
         inputActions.Player.Move.canceled += Move_canceled;
         inputActions.Player.Jump.performed += Jump_performed;
         inputActions.Player.Jump.canceled += Jump_canceled;
-
-
     }
-
-
     private void OnDisable()
     {
         inputActions.Disable();
@@ -34,8 +29,8 @@ public class CollectNetworkInputData : MonoBehaviour
         inputActions.Player.Move.canceled -= Move_canceled;
         inputActions.Player.Jump.performed -= Jump_performed;
         inputActions.Player.Jump.canceled -= Jump_canceled;
-
     }
+
 
     private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
@@ -56,10 +51,10 @@ public class CollectNetworkInputData : MonoBehaviour
     }
     private void Jump_performed(InputAction.CallbackContext context)
     {
+
         if (context.performed)
         {
             isJumpButtonPress = true;
-
         }
     }
     private void Jump_canceled(InputAction.CallbackContext context)
@@ -67,21 +62,21 @@ public class CollectNetworkInputData : MonoBehaviour
         if (context.canceled)
         {
             isJumpButtonPress = false;
-
         }
     }
     public NetworkInputData GetNetworkInputData()
     {
-        //movem
+        //movement
         NetworkInputData networkInputData = new NetworkInputData();
         if (inputActions.Player.Move.IsPressed())
         {
             networkInputData.InputData = Direction.normalized;
         }
-
         // jump
         if (inputActions.Player.Jump.IsPressed())
+        {
             networkInputData.JumpIsPressed = isJumpButtonPress;
+        }
 
         return networkInputData;
     }
