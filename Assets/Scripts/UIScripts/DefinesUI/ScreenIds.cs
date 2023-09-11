@@ -1,7 +1,6 @@
-
 public sealed class ScreenIds
 {
-    //Đăng ký scenes ids
+    public const string UIMovement = "UIMovement";
 
 
 }

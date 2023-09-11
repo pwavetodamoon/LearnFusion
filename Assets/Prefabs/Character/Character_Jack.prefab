@@ -451,6 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a91249c5e02ea468c2948d14e7c399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonClickAction: {fileID: -1863724898251253070, guid: 1f2cf77eadc679f41852c01ada661569, type: 3}
 --- !u!114 &5458434800358136752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +516,7 @@ MonoBehaviour:
     _value: 0
     _inverse: 0
     _hash: -814817977
-  StateHashes: 000000008a18fce4b9abd9d3
+  StateHashes: 00000000237665103e71a257
   TriggerHashes: 00000000
 --- !u!1 &4082447480397650779
 GameObject:
@@ -1311,7 +1312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8123457914704575949}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18607593, y: -0.000000029281841, z: 0.000000005545495, w: 0.9825354}
+  m_LocalRotation: {x: 0.18607593, y: 0.000000012128936, z: -0.0000000022970197, w: 0.98253536}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

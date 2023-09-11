@@ -1,5 +1,4 @@
 ﻿using Fusion;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -7,8 +6,11 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class NetworkPlayerControllerBase : NetworkTransform
 {
+    // [SerializeField] private UIMovementController uIMovementController;
     private CharacterController _characterController { get; set; }
+
     [Networked]
+    [HideInInspector]
     public Vector3 _VelocityDefault { get; set; }
 
     [Networked]
@@ -22,7 +24,6 @@ public class NetworkPlayerControllerBase : NetworkTransform
     [SerializeField] private float braking = 10.0f;
     [SerializeField] private float maxSpeed = 5.0f;
 
-
     [Header("Gravity")]
     [SerializeField] private float _gravity = -20.0f;
     protected override void Awake()
@@ -33,14 +34,12 @@ public class NetworkPlayerControllerBase : NetworkTransform
             _characterController = GetComponent<CharacterController>();
         }
     }
-
     protected override void CopyFromBufferToEngine()
     {
         _characterController.enabled = false;
 
         // Pull base (NetworkTransform) state from networked data buffer
         base.CopyFromBufferToEngine();
-
         // Re-enable CC
         _characterController.enabled = true;
     }
@@ -49,7 +48,6 @@ public class NetworkPlayerControllerBase : NetworkTransform
     {
         if (isGrounded)
         {
-            //  Debug.Log("jump");
             var newVel = _VelocityDefault;
             newVel.y += _jumpPower;
             _VelocityDefault = newVel;
@@ -98,7 +96,6 @@ public class NetworkPlayerControllerBase : NetworkTransform
         isGrounded = _characterController.isGrounded;
         _VelocityDefault = (transform.position - previousPos) * Runner.Simulation.Config.TickRate;
         //   Debug.Log($"_VelocityDefault {_VelocityDefault}");
-
     }
 
 }

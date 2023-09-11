@@ -3,7 +3,6 @@ using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
@@ -24,21 +23,17 @@ public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
     }
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-
         if (runner.IsServer)
         {
             int randomCharacter = UnityEngine.Random.Range(0, _networkPlayer.Count());
-            NetworkPrefabRef selectedCharacterRandom = _networkPlayer[randomCharacter];
-            networkPlayerObject = runner.Spawn(selectedCharacterRandom, RandomSpawnpositions().position, Quaternion.identity, player);
+            NetworkPrefabRef selectedCharacterRandom = _networkPlayer[0];
+            networkPlayerObject = runner.Spawn
+            (selectedCharacterRandom, RandomSpawnpositions().position, Quaternion.identity, player);
+            runner.SetPlayerObject(player, networkPlayerObject);
         }
         _spawnedCharacters.Add(player, networkPlayerObject);
         Debug.Log("Player Now: " + _spawnedCharacters.Count);
-
-        // Theo dõi Avatars của người chơi để chúng ta có thể xóa nó khi chúng ngắt kết nối
-
     }
-
-
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
         if (_spawnedCharacters.TryGetValue(player, out NetworkObject networkObject))
@@ -61,12 +56,10 @@ public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
             input.Set(_collectNetworkInputData.GetNetworkInputData());
         }
     }
-
     public void OnConnectedToServer(NetworkRunner runner)
     {
         Debug.Log($"Connected to Sever1");
     }
-
     public void OnDisconnectedFromServer(NetworkRunner runner)
     {
         Debug.Log($"On Disconnected From Server1");

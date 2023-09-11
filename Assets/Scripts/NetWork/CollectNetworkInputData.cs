@@ -1,6 +1,6 @@
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,8 +8,13 @@ public class CollectNetworkInputData : MonoBehaviour
 {
     private Vector3 Direction;
     private bool isJumpButtonPress;
-    private NewInputSystem inputActions;
+    private bool isPickUpPress;
+    private bool isDropPress;
+    private bool IsAttackPress;
 
+
+
+    private NewInputSystem inputActions;
     private void Awake()
     {
         inputActions = new NewInputSystem();
@@ -22,11 +27,14 @@ public class CollectNetworkInputData : MonoBehaviour
         inputActions.Player.Move.canceled += Move_canceled;
         inputActions.Player.Jump.performed += Jump_performed;
         inputActions.Player.Jump.canceled += Jump_canceled;
-
+        inputActions.Player.PickUp.performed += PickUp_performed;
+        inputActions.Player.PickUp.canceled += PickUp_canceled;
+        inputActions.Player.Drop.performed += Drop_performed;
+        inputActions.Player.Drop.canceled += Drop_canceled;
+        inputActions.Player.Attack.performed += Attack_performed;
+        inputActions.Player.Attack.canceled += Attack_canceled;
 
     }
-
-
     private void OnDisable()
     {
         inputActions.Disable();
@@ -34,10 +42,16 @@ public class CollectNetworkInputData : MonoBehaviour
         inputActions.Player.Move.canceled -= Move_canceled;
         inputActions.Player.Jump.performed -= Jump_performed;
         inputActions.Player.Jump.canceled -= Jump_canceled;
-
+        inputActions.Player.PickUp.performed -= PickUp_performed;
+        inputActions.Player.PickUp.canceled -= PickUp_canceled;
+        inputActions.Player.Drop.performed -= Drop_performed;
+        inputActions.Player.Drop.canceled -= Drop_canceled;
+        inputActions.Player.Attack.performed -= Attack_performed;
+        inputActions.Player.Attack.canceled -= Attack_canceled;
     }
 
-    private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+
+    private void Move_performed(InputAction.CallbackContext obj)
     {
         if (obj.performed)
         {
@@ -47,7 +61,7 @@ public class CollectNetworkInputData : MonoBehaviour
 
     }
 
-    private void Move_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void Move_canceled(InputAction.CallbackContext obj)
     {
         if (obj.canceled)
         {
@@ -56,10 +70,10 @@ public class CollectNetworkInputData : MonoBehaviour
     }
     private void Jump_performed(InputAction.CallbackContext context)
     {
+
         if (context.performed)
         {
             isJumpButtonPress = true;
-
         }
     }
     private void Jump_canceled(InputAction.CallbackContext context)
@@ -67,22 +81,66 @@ public class CollectNetworkInputData : MonoBehaviour
         if (context.canceled)
         {
             isJumpButtonPress = false;
-
         }
     }
+    private void PickUp_performed(InputAction.CallbackContext context)
+    {
+        isPickUpPress = true;
+    }
+    private void PickUp_canceled(InputAction.CallbackContext context)
+    {
+        isPickUpPress = false;
+    }
+
+    private void Drop_performed(InputAction.CallbackContext context)
+    {
+        isDropPress = true;
+    }
+    private void Drop_canceled(InputAction.CallbackContext context)
+    {
+        isDropPress = false;
+    }
+
+    private void Attack_performed(InputAction.CallbackContext context)
+    {
+        IsAttackPress = true;
+
+    }
+    private void Attack_canceled(InputAction.CallbackContext context)
+    {
+        IsAttackPress = false;
+    }
+
+
+
     public NetworkInputData GetNetworkInputData()
     {
-        //movem
+        //movement
         NetworkInputData networkInputData = new NetworkInputData();
         if (inputActions.Player.Move.IsPressed())
         {
             networkInputData.InputData = Direction.normalized;
         }
-
         // jump
         if (inputActions.Player.Jump.IsPressed())
+        {
             networkInputData.JumpIsPressed = isJumpButtonPress;
-
+        }
+        // pick up
+        if (inputActions.Player.PickUp.IsPressed())
+        {
+            networkInputData.IsPickUp = isPickUpPress;
+        }
+        // drop
+        if (inputActions.Player.Drop.IsPressed())
+        {
+            networkInputData.IsDrop = isDropPress;
+        }
+        // attack
+        if (inputActions.Player.Attack.IsPressed())
+        {
+            networkInputData.IsAttack = IsAttackPress;
+        }
         return networkInputData;
     }
 }

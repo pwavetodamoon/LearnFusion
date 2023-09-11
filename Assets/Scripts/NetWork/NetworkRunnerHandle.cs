@@ -1,6 +1,7 @@
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using deVoid.Utils;
 
 public class NetworkRunnerHandle : MonoBehaviour
 {
@@ -35,5 +36,7 @@ public class NetworkRunnerHandle : MonoBehaviour
             Scene = SceneManager.GetActiveScene().buildIndex,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
+        Signals.Get<ShowMovementSignal>().Dispatch();
+
     }
 }
