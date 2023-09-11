@@ -7,7 +7,6 @@ public class NetworkPlayer : NetworkBehaviour, IPlayerLeft
 {
     // class đai diện cho người chơi network Object
     public static NetworkPlayer local { get; set; }
-
     public CinemachineFreeLook cam;
 
     public override void Spawned()

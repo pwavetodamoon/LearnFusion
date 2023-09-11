@@ -3,11 +3,13 @@ using UnityEngine;
 public class NetworkPlayerMovementHandle : NetworkBehaviour
 {
     private NetworkPlayerControllerBase _networkPlayerControllerBase;
+    public WeaponController _weaponController;
     private Animator _animator;
     private float MoveValueAnimation;
     private void Awake()
     {
         _networkPlayerControllerBase = GetComponent<NetworkPlayerControllerBase>();
+        _weaponController = GetComponent<WeaponController>();
         _animator = GetComponent<Animator>();
     }
     public override void FixedUpdateNetwork()
@@ -27,7 +29,31 @@ public class NetworkPlayerMovementHandle : NetworkBehaviour
             {
                 _animator.SetBool("isJump", false);
             }
+
+            if (data.IsPickUp == true)
+            {
+                _weaponController.RPC_Pickup();
+            }
+
+            if (data.IsDrop == true)
+            {
+                _weaponController.RPC_Drop();
+            }
+
+
+            if (data.IsAttack == true)
+            {
+                Debug.Log("Attack");
+                _animator.SetBool("isAttack", true);
+
+            }
+            else
+            {
+                Debug.Log("Cancel Attack");
+                _animator.SetBool("isAttack", false);
+            }
         }
+        return;
     }
     public virtual void SetAnimationMovement()
     {

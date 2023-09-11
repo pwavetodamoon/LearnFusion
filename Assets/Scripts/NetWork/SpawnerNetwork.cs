@@ -29,6 +29,7 @@ public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
             NetworkPrefabRef selectedCharacterRandom = _networkPlayer[0];
             networkPlayerObject = runner.Spawn
             (selectedCharacterRandom, RandomSpawnpositions().position, Quaternion.identity, player);
+            runner.SetPlayerObject(player, networkPlayerObject);
         }
         _spawnedCharacters.Add(player, networkPlayerObject);
         Debug.Log("Player Now: " + _spawnedCharacters.Count);

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4390626425023368147}
   - component: {fileID: 1948462360350359321}
   - component: {fileID: 882259109124010332}
+  - component: {fileID: 4477904886838342530}
+  - component: {fileID: -6195961563353520865}
   m_Layer: 0
   m_Name: Axe1H_Basic
   m_TagString: Weapon
@@ -103,5 +105,44 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.37392724, y: 0.728488, z: 0.06049145}
+  m_Size: {x: 0.55, y: 0.8, z: 0.06049145}
   m_Center: {x: -0.0031984076, y: 0.19418201, z: -0.000762837}
+--- !u!114 &4477904886838342530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999748106215116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2c64f463c73a44baff61e8065f5c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  CanPick:
+    _value: 1
+--- !u!114 &-6195961563353520865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999748106215116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: a9de5a98f016a334c9a1113e07b1a12f
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 4477904886838342530}
+  SimulationBehaviours: []
