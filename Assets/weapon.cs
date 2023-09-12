@@ -6,15 +6,25 @@ using Fusion;
 
 public class weapon : NetworkBehaviour
 {
-    public NetworkBool CanPick = true;
+    [SerializeField] protected AxeSO axeSO;
 
+    public AxeSO _axeSO => axeSO;
+    private void Start()
+    {
+        SetNAme();
 
+    }
+    private void SetNAme()
+    {
+        _axeSO.SetName(gameObject.name);
+        Debug.Log("SetNAme");
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            CanPick = false;
-            Debug.Log("OnTriggerStay: " + CanPick);
+            _axeSO.SetCanPick(false);
+            Debug.Log("OnTriggerStay: " + _axeSO.GetCanPick());
         }
     }
 
@@ -22,8 +32,8 @@ public class weapon : NetworkBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            CanPick = true;
-            Debug.Log("OnTriggerStay: " + CanPick);
+            _axeSO.SetCanPick(true);
+            Debug.Log("OnTriggerStay: " + _axeSO.GetCanPick());
         }
     }
 }

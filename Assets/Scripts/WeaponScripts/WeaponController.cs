@@ -25,12 +25,13 @@ public class WeaponController : NetworkBehaviour
         if (Physics.Raycast(ray, out hit, pickupRange))
         {
             Weapon = hit.collider.gameObject;
-            if (hit.collider.CompareTag("Weapon") && handEmpty && Weapon.GetComponent<weapon>().CanPick)
+            if (hit.collider.CompareTag("Weapon") && handEmpty && Weapon.GetComponent<weapon>()._axeSO.GetCanPick())
             {
                 Debug.Log("Picked up weapon");
                 Weapon.transform.SetParent(_containerRightHand.transform, true);
                 Weapon.transform.position = _containerRightHand.transform.position;
                 Weapon.transform.rotation = _containerRightHand.transform.rotation;
+                handEmpty = false;
             }
         }
         else
@@ -43,7 +44,7 @@ public class WeaponController : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     public virtual void RPC_Drop()
     {
-        if (!handEmpty && Weapon != null && !Weapon.GetComponent<weapon>().CanPick)
+        if (!handEmpty && Weapon != null && !Weapon.GetComponent<weapon>()._axeSO.GetCanPick())
         {
             Debug.Log("Drop");
             Weapon.transform.SetParent(null);

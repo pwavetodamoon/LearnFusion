@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 3142082337486987172}
   - component: {fileID: 2032584306198564865}
   - component: {fileID: 4310446090251871435}
+  - component: {fileID: 6324877520088727843}
+  - component: {fileID: 1164081733271870536}
+  - component: {fileID: 7245578376063237942}
   m_Layer: 0
   m_Name: Axe1H_Epic
   m_TagString: Untagged
@@ -83,3 +86,62 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6324877520088727843
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364736775823328542}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.55, y: 0.8, z: 0.06049145}
+  m_Center: {x: -0.0031984076, y: 0.19418201, z: -0.000762837}
+--- !u!114 &1164081733271870536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364736775823328542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2c64f463c73a44baff61e8065f5c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  axeSO: {fileID: 11400000, guid: cffbe7e69ccf7c04597930ce6dc92ec4, type: 2}
+--- !u!114 &7245578376063237942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364736775823328542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: 992bb947a6df6634487686c2fe6330bc
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1164081733271870536}
+  SimulationBehaviours: []
