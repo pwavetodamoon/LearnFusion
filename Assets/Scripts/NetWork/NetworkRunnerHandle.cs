@@ -9,19 +9,11 @@ public class NetworkRunnerHandle : MonoBehaviour
     public NetworkRunner runner;
 
     private NetworkRunner _runner;
-
-    private void OnGUI()
+    private void Awake()
     {
-        if (_runner == null)
-        {
-            if (GUI.Button(new Rect(800, 200, 400, 80), "Join"))
-            {
-                InitNetworkRunner(GameMode.AutoHostOrClient);
-            }
-        }
+        InitNetworkRunner(GameMode.AutoHostOrClient, SceneManager.GetActiveScene().buildIndex);
     }
-
-    private async void InitNetworkRunner(GameMode mode)
+    private async void InitNetworkRunner(GameMode mode, SceneRef sceneRef)
     {
         // Create the Fusion runner and let it know that we will be providing user input
         _runner = Instantiate(runner);
@@ -33,7 +25,7 @@ public class NetworkRunnerHandle : MonoBehaviour
         {
             GameMode = mode,
             SessionName = "TestRoom",
-            Scene = SceneManager.GetActiveScene().buildIndex,
+            Scene = sceneRef,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
         Signals.Get<ShowMovementSignal>().Dispatch();
