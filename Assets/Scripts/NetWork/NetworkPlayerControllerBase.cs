@@ -26,6 +26,12 @@ public class NetworkPlayerControllerBase : NetworkTransform
 
     [Header("Gravity")]
     [SerializeField] private float _gravity = -20.0f;
+
+
+    private float targetAngle;
+
+    private float LerpAngle;
+
     protected override void Awake()
     {
         base.Awake();
@@ -82,11 +88,12 @@ public class NetworkPlayerControllerBase : NetworkTransform
         else
         {
             // Cập nhật vận tốc ngang sử dụng hướng di chuyển và gia tốc
-            horizontalVel = Vector3.ClampMagnitude(horizontalVel + MoveDir * acceleration * Runner.DeltaTime, maxSpeed);
 
-            var targetAngle = Mathf.Atan2(horizontalVel.x, horizontalVel.z) * Mathf.Rad2Deg;
-            var LerpAngle = Mathf.LerpAngle(transform.eulerAngles.y, targetAngle, _smoothTime);
+            horizontalVel = Vector3.ClampMagnitude(horizontalVel + MoveDir * acceleration * Runner.DeltaTime, maxSpeed);
+            targetAngle = Mathf.Atan2(horizontalVel.x, horizontalVel.z) * Mathf.Rad2Deg;
+            LerpAngle = Mathf.LerpAngle(transform.eulerAngles.y, targetAngle, _smoothTime);
             transform.rotation = Quaternion.Euler(0, LerpAngle, 0);
+
         }
         // Cập nhật thành phần x và z của vận tốc tổng thể
         Velocity.x = horizontalVel.x;

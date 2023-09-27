@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 148769784749900077}
   - component: {fileID: 1570882422525269054}
   - component: {fileID: -6233080388722514439}
+  - component: {fileID: -2359998261237030798}
   m_Layer: 0
   m_Name: NetworkRunner PF
   m_TagString: Untagged
@@ -68,3 +69,17 @@ MonoBehaviour:
   _spawnPosList:
   - {fileID: 7938750085767386847, guid: 2060a4d3ab07eae438837e18ad9eb9bc, type: 3}
   - {fileID: 6332569849100394714, guid: 2c5972cc919f46c47aca983d37a70e22, type: 3}
+--- !u!114 &-2359998261237030798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7091281798904268444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a93abf1a391964a94e5c139605105b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowHierarchyWindowOverlay: 1
+  PostLoadDelayFrames: 1

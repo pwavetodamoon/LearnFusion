@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Fusion;
 using System;
+using UnityEngine.Assertions.Comparers;
 
 public class SessionListItem : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class SessionListItem : MonoBehaviour
     public Button _joinButton;
     // chua tat ca thong tin cua mot session vi du nhu : ten session , playerCount
     SessionInfo sessionInfo;
-    public event Action<SessionInfo> OnJoinSession;
+    public event Action<SessionInfo> OnJoinSession; // <== kiểu trả về là một sự kiện 
 
     // Đặt thông tin cho mỗi room
     public void SetInfomationForSession(SessionInfo SessionInfo)

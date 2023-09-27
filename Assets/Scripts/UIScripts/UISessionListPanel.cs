@@ -6,15 +6,34 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
+
 
 public class UISessionListPanel : APanelController
 {
     public TextMeshProUGUI _statusText;
     public GameObject _uISesionItemPrefabs;
-
+    public Button CreateNewSessionButton;
     public VerticalLayoutGroup _contentContainerSessionItem;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        AddListeners();
+    }
+    protected override void AddListeners()
+    {
+        base.AddListeners();
+        CreateNewSessionButton.onClick.AddListener(CreateNewGameButtonOnClick);
+    }
+    private void RemoveAddListeners()
+    {
+        CreateNewSessionButton.onClick.RemoveListener(CreateNewGameButtonOnClick);
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        RemoveAddListeners();
+    }
     public void ClearListUiItem()
     {
         foreach (Transform child in _contentContainerSessionItem.transform)
@@ -27,7 +46,7 @@ public class UISessionListPanel : APanelController
 
     public void AddListUiItem(SessionInfo sessionInfo)
     {
-        //khai bao class SessionListItem 
+        //khai bao class SessionListItem , doi tuong UI item 
         SessionListItem addsessionListItem = Instantiate(_uISesionItemPrefabs, _contentContainerSessionItem.transform).GetComponent<SessionListItem>();
         // Dat thong tin cua Room hien tai vao session item
         addsessionListItem.SetInfomationForSession(sessionInfo);
@@ -38,12 +57,12 @@ public class UISessionListPanel : APanelController
 
     private void AddListUiItem_OnJoinSession(SessionInfo info)
     {
-
+        Debug.Log("Test");
     }
 
     private void OnNoSessionFound()
     {
-        _statusText.text = " No Session Found";
+        _statusText.text = "No Session Found";
         _statusText.gameObject.SetActive(true);
     }
 
@@ -51,5 +70,11 @@ public class UISessionListPanel : APanelController
     {
         _statusText.text = "Looking for Game Session";
         _statusText.gameObject.SetActive(false);
+    }
+
+    public void CreateNewGameButtonOnClick()
+    {
+        // todo: hien panel tao phong
+        Signals.Get<ShowUICreateNewSession>().Dispatch();
     }
 }

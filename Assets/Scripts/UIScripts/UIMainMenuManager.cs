@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using deVoid.Utils;
 
 public class UIMainMenuManager : APanelController
 {
@@ -24,21 +25,23 @@ public class UIMainMenuManager : APanelController
     protected override void AddListeners()
     {
         base.AddListeners();
-        _JoinButton.onClick.AddListener(OnJoinButtonClick);
+        _JoinButton.onClick.AddListener(OnFindButtonClick);
     }
     private void RemoveAddListeners()
     {
-        _JoinButton.onClick.RemoveListener(OnJoinButtonClick);
+        _JoinButton.onClick.RemoveListener(OnFindButtonClick);
     }
     protected override void OnDestroy()
     {
         base.OnDestroy();
         RemoveAddListeners();
     }
-    public void OnJoinButtonClick()
+    public void OnFindButtonClick()
     {
         PlayerPrefs.SetString("PlayerNickName", Name_InputField.text);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("Map1");
+        NetworkRunnerHandle networkRunnerHandle = FindObjectOfType<NetworkRunnerHandle>();
+        networkRunnerHandle.OnJoinLobby();
+        Signals.Get<HideUIMainMenu>().Dispatch();
     }
 }
