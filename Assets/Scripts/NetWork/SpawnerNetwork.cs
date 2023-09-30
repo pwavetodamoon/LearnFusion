@@ -9,11 +9,16 @@ public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkPrefabRef[] _networkPlayer;
     [SerializeField] private List<Transform> _spawnPosList;
+    UISessionListPanel uISessionListPanel;
 
     private CollectNetworkInputData _collectNetworkInputData;
     private NetworkObject networkPlayerObject;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+    private void Awake()
+    {
+        uISessionListPanel = FindObjectOfType<UISessionListPanel>(true);
 
+    }
     private Transform RandomSpawnpositions()
     {
         int Position = UnityEngine.Random.Range(0, _spawnPosList.Count);
@@ -90,7 +95,22 @@ public class SpawnerNetwork : MonoBehaviour, INetworkRunnerCallbacks
     { }
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
-    { }
+    {
+        if (uISessionListPanel == null) return;
+
+        if (sessionList.Count == 0)
+        {
+            uISessionListPanel.OnNoSessionFound();
+        }
+        else
+        {
+            uISessionListPanel.ClearListUiItem(); // xoa item list cu
+            foreach (SessionInfo sessionInfo in sessionList)
+            {
+                uISessionListPanel.AddListUiItem(sessionInfo);
+            }
+        }
+    }
 
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     { }

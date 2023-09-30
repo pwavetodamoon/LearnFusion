@@ -18,6 +18,7 @@ public class UISessionListPanel : APanelController
     protected override void Awake()
     {
         base.Awake();
+        ClearListUiItem();
         AddListeners();
     }
     protected override void AddListeners()
@@ -60,13 +61,13 @@ public class UISessionListPanel : APanelController
         Debug.Log("Test");
     }
 
-    private void OnNoSessionFound()
+    public void OnNoSessionFound()
     {
         _statusText.text = "No Session Found";
         _statusText.gameObject.SetActive(true);
     }
 
-    private void OnLookingForSession()
+    public void OnLookingForSession()
     {
         _statusText.text = "Looking for Game Session";
         _statusText.gameObject.SetActive(false);
@@ -75,6 +76,7 @@ public class UISessionListPanel : APanelController
     public void CreateNewGameButtonOnClick()
     {
         // todo: hien panel tao phong
+        OnLookingForSession();
         Signals.Get<ShowUICreateNewSession>().Dispatch();
     }
 }

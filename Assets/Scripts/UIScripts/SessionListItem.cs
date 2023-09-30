@@ -34,6 +34,8 @@ public class SessionListItem : MonoBehaviour
     }
     public void Onclick()
     {
+        NetworkRunnerHandle networkRunnerHandle = FindObjectOfType<NetworkRunnerHandle>();
         OnJoinSession?.Invoke(sessionInfo);
+        networkRunnerHandle.JoinGame(sessionInfo);
     }
 }
