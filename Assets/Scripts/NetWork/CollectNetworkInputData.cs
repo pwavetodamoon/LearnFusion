@@ -1,6 +1,7 @@
 
 using System;
 using Cysharp.Threading.Tasks;
+using deVoid.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,8 +34,23 @@ public class CollectNetworkInputData : MonoBehaviour
         inputActions.Player.Drop.canceled += Drop_canceled;
         inputActions.Player.Attack.performed += Attack_performed;
         inputActions.Player.Attack.canceled += Attack_canceled;
+        inputActions.PlayerKeyInputs.SendChat.performed += SendMessage_performed;   
+        inputActions.PlayerKeyInputs.StartChat.performed += StartChat_performed;
 
     }
+
+    private void StartChat_performed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("C");
+        Signals.Get<OpenChatBox>().Dispatch();
+    }
+
+    private void SendMessage_performed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Enter");
+        Signals.Get<SendPlayerMessage>().Dispatch();
+    }
+
     private void OnDisable()
     {
         inputActions.Disable();
@@ -48,6 +64,11 @@ public class CollectNetworkInputData : MonoBehaviour
         inputActions.Player.Drop.canceled -= Drop_canceled;
         inputActions.Player.Attack.performed -= Attack_performed;
         inputActions.Player.Attack.canceled -= Attack_canceled;
+        
+        inputActions.PlayerKeyInputs.SendChat.performed -= SendMessage_performed;   
+        inputActions.PlayerKeyInputs.StartChat.performed -= StartChat_performed;
+        inputActions.PlayerKeyInputs.SendChat.canceled -= SendMessage_performed;   
+        inputActions.PlayerKeyInputs.StartChat.canceled -= StartChat_performed;
     }
 
 

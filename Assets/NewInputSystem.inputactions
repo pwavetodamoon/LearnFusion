@@ -174,6 +174,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "PlayerKeyInputs",
+            "id": "e5e4592e-d103-4d19-b07b-6f9c58c063ed",
+            "actions": [
+                {
+                    "name": "StartChat",
+                    "type": "Button",
+                    "id": "838490be-2877-4225-86b2-d20e37d802b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SendChat",
+                    "type": "Button",
+                    "id": "166e799b-ec5e-4bb9-aa64-d8a8be4c8dee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f255a563-0c2c-4328-b769-8e0871cb8392",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartChat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5d05e73-cb20-4fbb-86ba-0838c00e5bac",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SendChat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

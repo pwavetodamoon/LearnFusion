@@ -257,6 +257,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  _nameText: {fileID: 0}
+  _NickName:
+    _length: 0
+    _data:
+      Data: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   cam: {fileID: 930099992065362752}
 --- !u!114 &5108966491013665171
 MonoBehaviour:
@@ -271,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  _weaponController: {fileID: 0}
 --- !u!114 &591592281180753627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   Animator: {fileID: 2220341538962558177}
-  TotalWords: 1
+  TotalWords: 2
   SyncSettings: 79
   FloatAccuracy:
     _value: 0
@@ -347,7 +353,7 @@ MonoBehaviour:
     _value: 0
     _inverse: 0
     _hash: -814817977
-  StateHashes: 00000000237665103e71a257
+  StateHashes: 00000000237665103e71a25728a981077af3fe2e0d286c404e865f43
   TriggerHashes: 00000000
 --- !u!1 &4881456175939183079
 GameObject:

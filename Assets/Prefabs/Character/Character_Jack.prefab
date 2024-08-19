@@ -425,6 +425,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  _nameText: {fileID: 0}
+  _NickName:
+    _length: 0
+    _data:
+      Data: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   cam: {fileID: 676118240808625587}
 --- !u!114 &1573883221182640661
 MonoBehaviour:
@@ -439,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  _weaponController: {fileID: 0}
 --- !u!114 &5191290400686342075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,7 +457,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a91249c5e02ea468c2948d14e7c399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonClickAction: {fileID: -1863724898251253070, guid: 1f2cf77eadc679f41852c01ada661569, type: 3}
 --- !u!114 &5458434800358136752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,7 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   Animator: {fileID: 5397276548217222416}
-  TotalWords: 1
+  TotalWords: 2
   SyncSettings: 79
   FloatAccuracy:
     _value: 0
@@ -516,7 +521,7 @@ MonoBehaviour:
     _value: 0
     _inverse: 0
     _hash: -814817977
-  StateHashes: 00000000237665103e71a257
+  StateHashes: 00000000237665103e71a25728a981077af3fe2e0d286c404e865f43
   TriggerHashes: 00000000
 --- !u!1 &4082447480397650779
 GameObject:

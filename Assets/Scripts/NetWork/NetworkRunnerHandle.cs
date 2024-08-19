@@ -51,9 +51,9 @@ public class NetworkRunnerHandle : MonoBehaviour
     }
     private async Task InitNetworkRunner(NetworkRunner runner, GameMode mode, NetAddress netAddress, string sessionname, SceneRef sceneRef, Action<NetworkRunner> initlized)
     {
-
         var sceneManagement = GetSceneManager(runner);
         _runner.ProvideInput = true;
+        Debug.Log($"Initializing NetworkRunner with mode: {mode}");
         // Start or join (depends on gamemode) a session with a specific name
         var task = await _runner.StartGame(new StartGameArgs()
         {
@@ -66,6 +66,7 @@ public class NetworkRunnerHandle : MonoBehaviour
             SceneManager = sceneManagement
         });
         Signals.Get<ShowMovementSignal>().Dispatch();
+        Signals.Get<ShowUIChat>().Dispatch();
 
     }
     public void OnJoinLobby()
@@ -73,7 +74,7 @@ public class NetworkRunnerHandle : MonoBehaviour
         var clientTask = JoinLobby();
 
     }
-    private async Task JoinLobby() // task vĂ o phĂ²ng
+    private async Task JoinLobby()
     {
         Debug.Log("JoinLobby Started");
 
