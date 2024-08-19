@@ -10,24 +10,27 @@ public class ChatManager : NetworkBehaviour
     public GameObject MsgTextPrefabInstance;
     public GameObject container;
     private GameObject _msgText;
+    public string playerName;
+
+
 
     private void Start()
     {
-        if (Object.HasStateAuthority)
+        if (HasStateAuthority)
         {
             _msgText = Instantiate(MsgTextPrefabInstance, container.transform);
             msgText = _msgText.GetComponent<TMP_Text>();
             uIGamePlayManager = FindObjectOfType<UIGamePlayManager>();
             networkPlayer = GetComponent<NetworkPlayer>();
+            playerName = networkPlayer.NickName.ToString();
         }
     }
-
-    public void CallSendMessage(string msg)
+    
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_CallSendMessage(string msg)
     {
-        // Gọi RPC để gửi tin nhắn đến tất cả các máy khách
-        // Tất cả các máy có thể gọi phương thức này
-        RPC_SendMessageFunction(msg);
-        Debug.Log("Message Send Requested");
+            RPC_SendMessageFunction(msg);
+            Debug.Log("Message Send Requested");
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -35,7 +38,7 @@ public class ChatManager : NetworkBehaviour
     {
         // Chỉ máy có StateAuthority mới xử lý và phát tán tin nhắn
         // Nếu không có quyền trạng thái, RPC sẽ không được xử lý
-        if (Object.HasStateAuthority)
+        if (HasStateAuthority)
         {
             RPC_DisPlayMessage(message, rpcInfo.Source);
             Debug.Log("Message Processed and Broadcasted");
@@ -45,10 +48,7 @@ public class ChatManager : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     private void RPC_DisPlayMessage(string message, PlayerRef messageSender)
     {
-        // Hiển thị tin nhắn trên giao diện người dùng
-        if (Object.HasStateAuthority)
-        {
-            string playerName = networkPlayer.NickName.ToString();
+            // Hiển thị tin nhắn trên giao diện người dùng
             string displayMessage = $"{playerName}: {message}\n";
 
             // Kiểm tra nếu msgText null, tạo một đối tượng mới
@@ -64,9 +64,9 @@ public class ChatManager : NetworkBehaviour
 
             // Tạo một phiên bản mới của msgText trong container
             Instantiate(msgText, uIGamePlayManager.uiChat.container.transform);
+            Debug.Log("Instantiate success");
 
             // Reset input field sau khi tin nhắn đã được gửi
             uIGamePlayManager.uiChat.PlayerInputText.text = string.Empty;
-        }
     }
 }

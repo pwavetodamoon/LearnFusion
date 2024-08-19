@@ -36,7 +36,20 @@ public class CollectNetworkInputData : MonoBehaviour
         inputActions.Player.Attack.canceled += Attack_canceled;
         inputActions.PlayerKeyInputs.SendChat.performed += SendMessage_performed;   
         inputActions.PlayerKeyInputs.StartChat.performed += StartChat_performed;
+           
+        inputActions.PlayerKeyInputs.SendChat.canceled -= SendMessage_cancel;
+        inputActions.PlayerKeyInputs.StartChat.canceled -= StartChat_cancel;
 
+    }
+
+    private void StartChat_cancel(InputAction.CallbackContext obj)
+    {
+        return;
+    }
+
+    private void SendMessage_cancel(InputAction.CallbackContext obj)
+    {
+        return;
     }
 
     private void StartChat_performed(InputAction.CallbackContext obj)
@@ -67,8 +80,8 @@ public class CollectNetworkInputData : MonoBehaviour
         
         inputActions.PlayerKeyInputs.SendChat.performed -= SendMessage_performed;   
         inputActions.PlayerKeyInputs.StartChat.performed -= StartChat_performed;
-        inputActions.PlayerKeyInputs.SendChat.canceled -= SendMessage_performed;   
-        inputActions.PlayerKeyInputs.StartChat.canceled -= StartChat_performed;
+        inputActions.PlayerKeyInputs.SendChat.canceled -= SendMessage_cancel;   
+        inputActions.PlayerKeyInputs.StartChat.canceled -= StartChat_cancel;
     }
 
 

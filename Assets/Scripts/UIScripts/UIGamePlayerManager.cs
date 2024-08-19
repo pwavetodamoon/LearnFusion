@@ -68,7 +68,7 @@ public sealed class UIGamePlayManager : NetworkBehaviour
                   // }
                     if (chatManager != null && !string.IsNullOrWhiteSpace(uiChat.PlayerInputText.text))
                     {
-                        chatManager.CallSendMessage(uiChat.PlayerInputText.text);
+                        chatManager.RPC_CallSendMessage(uiChat.PlayerInputText.text);
                         uiChat.PlayerInputText.text = string.Empty;
                     }
     }
